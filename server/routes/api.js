@@ -6,9 +6,6 @@ const names = {
   lastUpdated: 0,
 };
 
-const cachingValues = async () => {
-  allNames = await recipeDb.getNamesOfAllIngredients();
-}
 /* GET users listing. */
 router.get('/livsmedel', async function(req, res, next) {
   if(req.query.name){
@@ -24,6 +21,23 @@ router.get('/livsmedel/names', async function(req, res, next) {
     names.allNames = await recipeDb.getNamesOfAllIngredients();
   }
   res.json(names.allNames);
+});
+router.get('/recipes', async function(req, res, next) {
+  if(req.query.name){
+    const dbQuery = {Namn: {$in: req.query.name.split('||')}}
+    console.log(dbQuery);
+    res.send(await recipeDb.getIngredientsByQuery(dbQuery));
+  } else{
+    res.send('Expected name query');
+  }
+});
+router.get('/recipes/names', async function(req, res, next) {
+  const names = await recipeDb.getNamesOfAllRecipes();
+  res.json(names);
+});
+router.post('/recipes', async function(req, res, next) {
+  const newRecipe = await recipeDb.postRecipe(req.body);
+  res.send(newRecipe);
 });
 
 module.exports = router;

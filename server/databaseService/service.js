@@ -23,6 +23,11 @@ const getIngredientsByQuery = async (queryObject) => {
   return await MyModel.find(queryObject);
 }
 
+const getNamesOfAllRecipes = async () => {
+  const MyModel = mongoose.model('recept', receptSchema);
+  return await MyModel.find({},'Namn');
+}
+
 const getRecipesByQuery = async (queryObject) => {
   const MyModel = mongoose.model('recept', receptSchema);
   return await MyModel.find(queryObject);
@@ -40,5 +45,6 @@ const postRecipe = async (recipe) => {
   return newRecipe;
 }
 module.exports = {
-  createConnection, getAllIngredients, getIngredientsByQuery, postRecipe, getRecipesByQuery, getNamesOfAllIngredients
+  createConnection, getAllIngredients, getIngredientsByQuery, postRecipe, getRecipesByQuery, getNamesOfAllIngredients,
+  getNamesOfAllRecipes
 }
