@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const {receptSchema, ingredientSchema, naringsvardeSchema} = require('./schemas')
+const {receptSchema, ingredientSchema, naringsvardeSchema} = require('./schemas');
+
 const createConnection = async (databasePath) => {
   await mongoose.connect('mongodb://localhost/testDB', {
   useNewUrlParser: true,
@@ -13,11 +14,31 @@ const getAllIngredients = async () => {
   const MyModel = mongoose.model('ingredient', ingredientSchema);
   return await MyModel.find({});
 }
+const getNamesOfAllIngredients = async () => {
+  const MyModel = mongoose.model('ingredient', ingredientSchema);
+  return await MyModel.find({},'Namn');
+}
 const getIngredientsByQuery = async (queryObject) => {
   const MyModel = mongoose.model('ingredient', ingredientSchema);
   return await MyModel.find(queryObject);
 }
 
+const getRecipesByQuery = async (queryObject) => {
+  const MyModel = mongoose.model('recept', receptSchema);
+  return await MyModel.find(queryObject);
+}
+
+const postRecipe = async (recipe) => {
+  const MyModel = mongoose.model('recept', receptSchema);
+  const newRecipe = new MyModel();
+  newRecipe.Namn = recipe.Namn;
+  newRecipe.Ingredienser = recipe.Ingredienser;
+  newRecipe.Effort = recipe.Effort;
+  newRecipe.Tillagningstid = recipe.Tillagningstid;
+  newRecipe.Instruktioner = recipe.Instruktioner;
+  await newRecipe.save();
+  return newRecipe;
+}
 module.exports = {
-  createConnection, getAllIngredients, getIngredientsByQuery
+  createConnection, getAllIngredients, getIngredientsByQuery, postRecipe, getRecipesByQuery, getNamesOfAllIngredients
 }

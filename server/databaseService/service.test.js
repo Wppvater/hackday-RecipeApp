@@ -1,5 +1,4 @@
-const {createConnection, getAllIngredients, getIngredientsByQuery
- } = require('./service');
+const {createConnection, getAllIngredients, getIngredientsByQuery, postRecipe, getRecipesByQuery } = require('./service');
 describe('databaseTests', () => {
   let connection;
   beforeAll( async () => {
@@ -17,5 +16,15 @@ describe('databaseTests', () => {
     expect(ingredient).toHaveLength(1);
     expect(ingredient[0].Namn).toEqual('Nöt talg');
     expect(ingredient[0].Naringsvarden).toHaveLength(55);
+    console.log(ingredient);
+  })
+  test('can create a new recipe name', async () => {
+    const ingredients = await getIngredientsByQuery({Namn: {$in: ['Nöt talg', 'Smör fett 80%', 'Mimosasallad']}});
+    const ingredient = await postRecipe({Namn: 'Nytt recept', Ingredienser: ingredients});
+    console.log(ingredient);
+  })
+  test('can get a recipe by name', async () => {
+    const ingredients = await getRecipesByQuery({Namn: 'Nytt recept'});
+    console.log(ingredients);
   })
 })

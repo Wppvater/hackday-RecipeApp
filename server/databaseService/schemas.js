@@ -24,8 +24,12 @@ const ingredientSchema = new Schema({
 });
 const receptSchema = new Schema({
   Namn: String,
-  Id: ObjectId,
   Ingredienser: [ingredientSchema],
+  Portioner: String,
+  Naringsvarden: [naringsvardeSchema],
+  Effort: String,
+  Tillagingstid: String,
+  Instruktioner: [String],
 })
 
 module.exports = {
