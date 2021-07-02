@@ -36,11 +36,13 @@ const getRecipesByQuery = async (queryObject) => {
 const postRecipe = async (recipe) => {
   const MyModel = mongoose.model('recept', receptSchema);
   const newRecipe = new MyModel();
+  console.log(recipe);
   newRecipe.Namn = recipe.Namn;
   newRecipe.Ingredienser = recipe.Ingredienser;
   newRecipe.Effort = recipe.Effort;
   newRecipe.Tillagningstid = recipe.Tillagningstid;
   newRecipe.Instruktioner = recipe.Instruktioner;
+  newRecipe.Naringsvarden = recipe.Naringsvarden;
   await newRecipe.save();
   return newRecipe;
 }

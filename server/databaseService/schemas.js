@@ -14,6 +14,7 @@ const naringsvardeSchema = new Schema({
   Ursprung: String,
   Nummer: String,
   ViktGram: String,
+  Varde: String,
 })
 const ingredientSchema = new Schema({
   Huvudgrupp: String,
@@ -27,6 +28,7 @@ const receptSchema = new Schema({
   Ingredienser: [ingredientSchema],
   Portioner: String,
   Naringsvarden: [naringsvardeSchema],
+  Typ: String,
   Effort: String,
   Tillagingstid: String,
   Instruktioner: [String],
