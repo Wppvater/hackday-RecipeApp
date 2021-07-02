@@ -1,38 +1,69 @@
-.App {
+body{
+  background-color:rgb(194, 250, 232);
+}
+button {
+  height: 3rem;
+  width: 25%;
+  background-color: rgb(200, 230, 110);
+  border-radius: 1rem;
+  margin: 1rem;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+nav a{
+  text-decoration: none;
+  color: black;
+  background: rgb(200, 230, 110);
+  width: 25%;
+  padding: 0 0.5rem;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+}
+.recipe-creation-form, .schedule-creation-form{
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+.recipe-creation-form input, .schedule-creation-form input{
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.3rem;
+  border-color: hsl(0,0%,80%);
+  border-width: 1px;
+}
+.nutrients-list{
+  background-color: rgb(176, 142, 255);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+.nutrients-list h2{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nutrients-list li{
+  list-style: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and (min-width:700px) {
+  nav{
+    position: relative;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .recipe-creation-form, .schedule-creation-form{
+    width: 50%;
   }
-  to {
-    transform: rotate(360deg);
+  .App{
+    display: flex;
+    direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .App-header{
+    width: 100%;
   }
 }
